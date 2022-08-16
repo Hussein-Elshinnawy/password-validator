@@ -1,10 +1,13 @@
 package passwordvalidator;
 
 import java.util.Scanner;
+import java.util.Random;
 
 public class password {
 
 	public static void main(String[] args) {
+		 System.out.println(passwordGenerator()); 
+		//System.out.println(genationValidation(passwordGenerator()));
 		Scanner myObj = new Scanner(System.in);
 		String input = myObj.nextLine();
 			if(validatepassword(input))
@@ -23,7 +26,7 @@ public class password {
     {
         if(password.length()>=8 && password.length()<=12)
         {
-            if(passwordconstrant(password))
+            if(passwordConstrant(password))
             {
                 System.out.println("good range");
                 return true;
@@ -42,7 +45,7 @@ public class password {
         
 
     }
-    public static boolean passwordconstrant(String password)
+    public static boolean passwordConstrant(String password)
     {
         boolean upperChar=false; boolean lowerChar=false; boolean specialChar=false; boolean digitChar=false;
         for(int i=0 ; i<password.length() ; i++)
@@ -71,6 +74,42 @@ public class password {
         }
         return false;
     }
+    
+//    public static String passwordGenerator()
+//    {
+//    	Random r = new Random();
+//    	String alphabet = "1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+//    	String temp = "";
+//    	int passLength =r.nextInt(12 - 8) + 8; 
+//        for (int i = 0; i < passLength; i++) {
+//            temp+=alphabet.charAt(r.nextInt(alphabet.length()));
+//        } 
+//        return temp;
+//        
+//    }
+    public static String passwordGenerator()
+    {
+    	Random r = new Random();
+    	String temp = "";
+    	int passLength =r.nextInt(12 - 8) + 8; 
+        for (int i = 0; i < passLength; i++) {
+            char random_3_Char = (char) (r.nextInt(93) + '!');//48 -122 //  char random_3_Char = (char) (48 + r.nextInt(122));
+            temp+=random_3_Char;
+        } 
+        return temp;
+        
+    }
+    
+    //the techique is correct keep generating untill one is correct but it's ineffecient and causes stackoverflowerror
+//    public static String genationValidation(String genPassword)
+//    {
+//    	while(!passwordConstrant(genPassword))
+//    	{	
+//    		System.out.println(genPassword);
+//    		genationValidation(passwordGenerator());
+//    	}
+//    	return genPassword;
+//    }
 
 
 
