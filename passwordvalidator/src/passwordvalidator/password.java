@@ -6,7 +6,8 @@ import java.util.Random;
 public class password {
 
 	public static void main(String[] args) {
-		 System.out.println(passwordGenerator()); 
+		System.out.println(generatorValidation(passGen()));
+		 //System.out.println(passwordGenerator()); 
 		//System.out.println(genationValidation(passwordGenerator()));
 		Scanner myObj = new Scanner(System.in);
 		String input = myObj.nextLine();
@@ -101,16 +102,62 @@ public class password {
     }
     
     //the techique is correct keep generating untill one is correct but it's ineffecient and causes stackoverflowerror
-//    public static String genationValidation(String genPassword)
-//    {
-//    	while(!passwordConstrant(genPassword))
-//    	{	
-//    		System.out.println(genPassword);
-//    		genationValidation(passwordGenerator());
-//    	}
-//    	return genPassword;
-//    }
-
+    public static String generatorValidation(String genPassword)
+    {
+    	while(!passwordConstrant(genPassword))
+    	{	
+    		System.out.println(genPassword);
+    		generatorValidation(passGen());
+    	}
+    	return genPassword;
+    }
+    
+    //each character of password is randomized be one of the options 1-upper-case 2-lower-case 3-digit 4-special character so chances of each option 1/4 
+    public static String passGen()
+    {
+    	
+    	Random r = new Random();
+    	//int passLength =r.nextInt(12 - 8) + 8; 
+    	String genPassword = "";
+    	for(int i = 0; i < 12; i++) {
+    		
+    		int cases =r.nextInt(5 - 1) + 1; 
+    		switch(cases)
+    		{
+    		case 1:{
+    			
+    			char upper = (char) (r.nextInt(90-65) + 65);
+    			genPassword+=upper;
+    			break;
+    		}
+    		
+    		case 2:{
+    			
+    			char lower = (char) (r.nextInt(122-97) + 97);
+    			genPassword+=lower;
+    			break;
+    		}
+    		
+    		case 3:{
+    		
+    			char digit = (char) (r.nextInt(57-48) + 48);
+    			genPassword+=digit;
+    			break;
+    		}
+    		
+    		case 4:{
+    			
+    			String specialChar = "@#$%&";
+    			char special = specialChar.charAt(r.nextInt(specialChar.length()));
+    			genPassword+=special;
+    			break;
+    		}
+    		}
+    	}
+		return genPassword;
+    	
+    }
+    
 
 
 }
