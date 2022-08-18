@@ -10,16 +10,16 @@ public class password {
 		 //System.out.println(passwordGenerator()); 
 		//System.out.println(genationValidation(passwordGenerator()));
 		Scanner myObj = new Scanner(System.in);
-		String input = myObj.nextLine();
-			if(validatepassword(input))
-			{
-				
-				System.out.println("MISSION PASSED");
-			}
-			else {
-				System.out.println("WASTED");
-			}
-		
+//		String input = myObj.nextLine();
+//			if(validatepassword(input))
+//			{
+//				
+//				System.out.println("MISSION PASSED");
+//			}
+//			else {
+//				System.out.println("WASTED");
+//			}
+//		
 		        
 	}
 
@@ -107,7 +107,8 @@ public class password {
     	while(!passwordConstrant(genPassword))
     	{	
     		System.out.println(genPassword);
-    		generatorValidation(passGen());
+    		genPassword= passGen();
+    		generatorValidation( genPassword);
     	}
     	return genPassword;
     }
