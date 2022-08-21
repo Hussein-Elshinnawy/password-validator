@@ -6,45 +6,39 @@ import java.util.Random;
 public class password {
 
 	public static void main(String[] args) {
+		System.out.println("a suggested password");
 		System.out.println(generatorValidation(passGen()));
-		 //System.out.println(passwordGenerator()); 
-		//System.out.println(genationValidation(passwordGenerator()));
-		Scanner myObj = new Scanner(System.in);
-//		String input = myObj.nextLine();
-//			if(validatepassword(input))
-//			{
-//				
-//				System.out.println("MISSION PASSED");
-//			}
-//			else {
-//				System.out.println("WASTED");
-//			}
-//		
+		System.out.println("please enter a password");
+		try (Scanner myObj = new Scanner(System.in)) {
+			String input = myObj.nextLine();
+				if(validatepassword(input))
+				{
+					
+					System.out.println("MISSION PASSED");
+				}
+				else {
+					System.out.println("WASTED");
+				}
+		}
+		
 		        
 	}
 
-	public static boolean validatepassword(String password)
-    {
-        if(password.length()>=8 && password.length()<=12)
-        {
-            if(passwordConstrant(password))
-            {
-                System.out.println("good range");
+	public static boolean validatepassword(String password){
+        if(password.length()>=8 && password.length()<=12){
+            if(passwordConstrant(password)){
                 return true;
             }
-            else {
+            else{
             	System.out.println("the password must contain at leat 1 upper character 1 lower character , 1 digit ,1 special character");
             	return false;
             }
-            
-            
         }
         else {
         	System.out.println("the password length must be within 8 to 12 characters");
         	return false;
         }
         
-
     }
     public static boolean passwordConstrant(String password)
     {
@@ -127,21 +121,21 @@ public class password {
     		{
     		case 1:{
     			
-    			char upper = (char) (r.nextInt(90-65) + 65);
+    			char upper = (char) (r.nextInt(90-65) + 65);//upper-cases
     			genPassword+=upper;
     			break;
     		}
     		
     		case 2:{
     			
-    			char lower = (char) (r.nextInt(122-97) + 97);
+    			char lower = (char) (r.nextInt(122-97) + 97);//lower-cases
     			genPassword+=lower;
     			break;
     		}
     		
     		case 3:{
     		
-    			char digit = (char) (r.nextInt(57-48) + 48);
+    			char digit = (char) (r.nextInt(57-48) + 48);//lower-cases
     			genPassword+=digit;
     			break;
     		}
