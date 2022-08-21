@@ -20,26 +20,56 @@ public class password {
 					System.out.println("WASTED");
 				}
 		}
-		
 		        
 	}
+	
+	//old techique of password generation
+//  public static String passwordGenerator()
+//  {
+//  	Random r = new Random();
+//  	String alphabet = "1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+//  	String temp = "";
+//  	int passLength =r.nextInt(12 - 8) + 8; 
+//      for (int i = 0; i < passLength; i++) {
+//          temp+=alphabet.charAt(r.nextInt(alphabet.length()));
+//      } 
+//      return temp;
+//      
+//  }
+  
+  
+  	//old techique of password generation
+//  public static String passwordGenerator()
+//  {
+//  	Random r = new Random();
+//  	String temp = "";
+//  	int passLength =r.nextInt(12 - 8) + 8; 
+//      for (int i = 0; i < passLength; i++) {
+//          char random_3_Char = (char) (r.nextInt(93) + '!');
+//          temp+=random_3_Char;
+//      } 
+//      return temp;
+//      
+//  }
 
 	public static boolean validatepassword(String password){
-        if(password.length()>=8 && password.length()<=12){
-            if(passwordConstrant(password)){
+   
+            if(passwordConstrant(password) && passwordRange(password)){
                 return true;
             }
-            else{
-            	System.out.println("the password must contain at leat 1 upper character 1 lower character , 1 digit ,1 special character");
-            	return false;
-            }
-        }
-        else {
-        	System.out.println("the password length must be within 8 to 12 characters");
-        	return false;
-        }
+            return false;
         
     }
+	
+	public static boolean passwordRange(String password)
+	{
+		if(password.length()>=8 && password.length()<=12){
+			return true;
+		}
+		System.out.println("the password length must be within 8 to 12 characters");
+		return false;
+	}
+	
     public static boolean passwordConstrant(String password)
     {
         boolean upperChar=false; boolean lowerChar=false; boolean specialChar=false; boolean digitChar=false;
@@ -67,42 +97,15 @@ public class password {
         {
         	return true;
         }
+        System.out.println("the password must contain at leat 1 upper character 1 lower character , 1 digit ,1 special character");
         return false;
     }
     
-//    public static String passwordGenerator()
-//    {
-//    	Random r = new Random();
-//    	String alphabet = "1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-//    	String temp = "";
-//    	int passLength =r.nextInt(12 - 8) + 8; 
-//        for (int i = 0; i < passLength; i++) {
-//            temp+=alphabet.charAt(r.nextInt(alphabet.length()));
-//        } 
-//        return temp;
-//        
-//    }
-    public static String passwordGenerator()
-    {
-    	Random r = new Random();
-    	String temp = "";
-    	int passLength =r.nextInt(12 - 8) + 8; 
-        for (int i = 0; i < passLength; i++) {
-            char random_3_Char = (char) (r.nextInt(93) + '!');//48 -122 //  char random_3_Char = (char) (48 + r.nextInt(122));
-            temp+=random_3_Char;
-        } 
-        return temp;
-        
-    }
-    
-    //the techique is correct keep generating untill one is correct but it's ineffecient and causes stackoverflowerror
-    public static String generatorValidation(String genPassword)
-    {
+    public static String generatorValidation(String genPassword){
     	while(!passwordConstrant(genPassword))
     	{	
-    		System.out.println(genPassword);
     		genPassword= passGen();
-    		generatorValidation( genPassword);
+    		generatorValidation(genPassword);
     	}
     	return genPassword;
     }
@@ -143,7 +146,7 @@ public class password {
     		case 4:{
     			
     			String specialChar = "@#$%&";
-    			char special = specialChar.charAt(r.nextInt(specialChar.length()));
+    			char special = specialChar.charAt(r.nextInt(specialChar.length()));//special-characters
     			genPassword+=special;
     			break;
     		}
@@ -152,7 +155,5 @@ public class password {
 		return genPassword;
     	
     }
-    
-
 
 }
